@@ -1,4 +1,27 @@
 #!/usr/bin/python
+
+'''
+
+Author  : Nasir Khan (r0ot h3x49)
+Github  : https://github.com/r0oth3x49
+License : MIT
+
+
+Copyright (c) 2018 Nasir Khan (r0ot h3x49)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the
+Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
+ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH 
+THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+'''
+
 import os
 import sys
 import time
@@ -9,7 +32,7 @@ else:
     import tty
     import termios
 
-class GetPass:
+class GetPass(object):
 
     def _unix_getch(self):
         fd = sys.stdin.fileno()
@@ -56,14 +79,17 @@ class GetPass:
                     else:
                         pass
                 else:
-                    if ord(c) == 72 or ord(c) == 80 or ord(c) == 224 or ord(c) == 77 or ord(c) == 75 or ord(c) == 27:
+                    if ord(c) == 27:
+                        pass
+                    elif ord(c) == 224:
+                        c = _win_getch()
                         pass
                     else:
                         if sys.version_info[:2] >= (3, 0):
                             pw = pw + c.decode('utf-8')
                         else:
                             pw = pw + c
-                        sys.stdout.write("*")
+                        sys.stdout.write('*')
                         sys.stdout.flush()
             else:
                 if ord(c) == 13:
@@ -81,7 +107,10 @@ class GetPass:
                     else:
                         pass
                 else:
-                    if ord(c) == 91 or ord(c) == 27 or ord(c) == 65 or ord(c) == 66 or ord(c) == 67 or ord(c) == 68:
+                    if ord(c) == 27:
+                        pass
+                    elif ord(c) == 91 or ord(c) == 27:
+                        c = self._unix_getch()
                         pass
                     else:
                         pw = pw + c

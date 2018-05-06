@@ -1,162 +1,182 @@
-[![GitHub release](https://img.shields.io/badge/release-v0.3-brightgreen.svg?style=flat-square)](https://github.com/r0oth3x49/udemy-dl/releases/tag/v0.3)
+[![GitHub release](https://img.shields.io/badge/release-v0.4-brightgreen.svg?style=flat-square)](https://github.com/r0oth3x49/udemy-dl/releases/tag/v0.4)
 [![GitHub stars](https://img.shields.io/github/stars/r0oth3x49/udemy-dl.svg?style=flat-square)](https://github.com/r0oth3x49/udemy-dl/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/r0oth3x49/udemy-dl.svg?style=flat-square)](https://github.com/r0oth3x49/udemy-dl/network)
 [![GitHub issues](https://img.shields.io/github/issues/r0oth3x49/udemy-dl.svg?style=flat-square)](https://github.com/r0oth3x49/udemy-dl/issues)
+[![GitHub license](https://img.shields.io/github/license/r0oth3x49/udemy-dl.svg?style=flat-square)](https://github.com/r0oth3x49/udemy-dl/blob/master/LICENSE)
 
 # udemy-dl
 **A cross-platform python based utility to download courses from udemy for personal offline use.**
 
-[![udemy-dl.gif](https://s26.postimg.org/st8y7ud5l/udemy-dl.gif)](https://postimg.org/image/y4nusjz85/)
+[![udemy.png](https://s26.postimg.org/fo84ef1qx/udemy.png)](https://postimg.org/image/brusifgr9/)
 
-### Requirements
+## ***Features***
+
+- Resume capability for a course video.
+- Supports organization and individual udemy users both.
+- Save course direct download links to a text file (option: `--save`).
+- Cache credentials to a file and use it later for login purpose (option: `--cache`).
+- List down course contents and video resolution, suggest the best resolution (option: `--info`).
+- Download/skip all available subtitles for a video (options: `--skip-sub, --skip-sub`).
+- Download spacific chapter in a course (option: `-c / --chapter`).
+- Download specific lecture in a chapter (option: `-l / --lecture`).
+- Download chapter(s) by providing range in a course (option: `--chapter-start, --chapter-end`).
+- Download lecture(s) by providing range in a chapter (option: `--lecture-start, --lecture-end`).
+- Download lecture(s) requested resolution (option: `-q / --quality`).
+- Download course to user requested path (option: `-o / --output`).
+
+
+## ***Requirements***
 
 - Python (2 or 3)
 - Python `pip`
 - Python module `requests`
 - Python module `colorama`
-- Python module `requests[security]` : **(for Mac Users only)**
+- Python module `unidecode`
+- Python module `six`
+- Python module `requests[security]` or `pyOpenSSL`
 
-### Install modules
+## ***Module Installation***
 
 	pip install -r requirements.txt
 	
-### Tested on
+## ***Tested on***
 
-- Windows 7/8/8.1
+- Windows 7/8/8.1/10
 - Kali linux (2017.2)
+- Ubuntu-LTS (64-bit) (tested with super user)
 - Mac OSX 10.9.5 (tested with super user)
  
-### Download udemy-dl
+## ***Download udemy-dl***
 
 You can download the latest version of udemy-dl by cloning the GitHub repository.
 
 	git clone https://github.com/r0oth3x49/udemy-dl.git
-	
-### Updates
 
-- Added feature to download the default quality if requested quality is not there.
-- Added feature to cache the credentials to file and use it later for login purpose.
-- Added feature to get user input if no credentials provided using command line argument.
-- Updated code for downloading captions (subtitles) if available.
+## ***Issue Reporting Guideline***
 
+To maintain an effective bugfix workflow and make sure issues will be solved, I ask reporters to follow some simple guidelines.
 
-### Change-log
+Before creating an issue, please do the following:
 
-- Fixed some issues & improved code quality for Python3.
-- Fixed #13 (UnicodeEncodeError) thanks for quick patch by @jdsantiagojr 
-- Added feature to skip captions/subtitle and download course only.
-- Added feature to download captions/subtitle only thanks to @leo459028.
-- Added feature to edit the password by pressing backspace on command line.
-	
-### Configuration
+1. **Use the GitHub issue search** &mdash; check if the issue has already been reported.
+2. **Check if the issue has been fixed** &mdash; try to reproduce it using the latest `master` in the repository.
+3. Make sure, that information you are about to report is related to this repository 
+   and not the one available ***Python's repository***, Because this repository cannot be downloaded via pip.
 
-<pre><code>
-	
-	
-	{
-		"username" 		: "user@domain.com",
-		"password" 		: "p4ssw0rd",
-		"output" 		: "path/to/directory/",
-		"resolution" 		: "1080"
-	}
-	
-	Example for windows users to set output directory:
-		"output" 		: "path\\to\\directory"
-		
-</code></pre>
+A good bug report shouldn't leave others needing to chase you up for more
+information. Please try to be as detailed as possible in your report. What is
+your environment? What was the course url? What steps will reproduce the issue? What OS
+experience the problem? All these details will help to fix any potential bugs as soon as possible.
+
+### ***Example:***
+
+> Short and descriptive example bug report title
+>
+> A summary of the issue and the OS environment in which it occurs. If
+> suitable, include the steps required to reproduce the bug.
+>
+> 1. This is the first step
+> 2. This is the second step
+> 3. Further steps, etc.
+>
+> `<url>` - a udemy course link to reproduce the error.
+>
+> Any other information you want to share that is relevant to the issue being reported.
 
 
-### Usage
+## ***Usage***
 
-***Downloading course***
+***Download a course***
 
-	python udemy-dl.py -u user@domain.com -p p4ssw0rd COURSE_URL
-	
-***Downloading Course with specific resolution***
+    python udemy-dl.py COURSE_URL
+  
+***Download course with specific resolution***
 
-	python udemy-dl.py -u user@domain.com -p p4ssw0rd COURSE_URL -r 720
-	
-***Downloading course to a specific location***
+    python udemy-dl.py COURSE_URL -q 720
+  
+***Download course to a specific location***
 
-	python udemy-dl.py -u user@domain.com -p p4ssw0rd COURSE_URL -o "/path/to/directory/"
-	
-***Downloading course with specific resolution to a specific location***
+    python udemy-dl.py COURSE_URL -o "/path/to/directory/"
+  
+***Download course with specific resolution to a specific location***
 
-	python udemy-dl.py -u user@domain.com -p p4ssw0rd COURSE_URL -r 720 -o "/path/to/directory/"
+    python udemy-dl.py COURSE_URL -q 720 -o "/path/to/directory/"
 
-***Saving download links***
+***Download specific chapter from a course***
 
-	python udemy-dl.py -u user@domain.com -p p4ssw0rd COURSE_URL -s
+    python udemy-dl.py COURSE_URL -c NUMBER
 
-***Saving specific resolution download links***
+***Download specific lecture from a chapter***
 
-	python udemy-dl.py -u user@domain.com -p p4ssw0rd COURSE_URL -s -r 720
+    python udemy-dl.py COURSE_URL -c NUMBER -l NUMBER
 
-***Saving download links to specific location***
-	
-	python udemy-dl.py -u user@domain.com -p p4ssw0rd COURSE_URL -s -o "/path/to/directory/"
-	
-***Saving specific resolution download links to specific location***
+***Download lecture(s) range from a specific chapter***
 
-	python udemy-dl.py -u user@domain.com -p p4ssw0rd COURSE_URL -s -r 720 -o "/path/to/directory/"
+    python udemy-dl.py COURSE_URL -c NUMBER --lecture-start NUMBER --lecture-end NUMBER
 
-***Downloading course and caching credentials***
+***Download chapter(s) range from a course***
 
-	python udemy-dl.py -u user@domain.com -p p4ssw0rd COURSE_URL --configs
+    python udemy-dl.py COURSE_URL --chapter-start NUMBER --chapter-end NUMBER
 
-***Downloading with specific resolution and allow default resolution as well***
+***Download specific lecture from chapter(s) range***
 
-	python udemy-dl.py -u user@domain.com -p p4ssw0rd COURSE_URL -r 1080 -d
+    python udemy-dl.py COURSE_URL --chapter-start NUMBER --chapter-end NUMBER --lecture NUMBER
 
-***Downloading course but skip captions/subtitles***
+***Download lecture(s) range from chapter(s) range***
 
-	python udemy-dl.py -u user@domain.com -p p4ssw0rd COURSE_URL --skip-sub
+    python udemy-dl.py COURSE_URL --chapter-start NUMBER --chapter-end NUMBER --lecture-start NUMBER --lecture-end NUMBER
 
-***Downloading captions/subtitles only***
+***List down specific chapter from a course***
 
-	python udemy-dl.py -u user@domain.com -p p4ssw0rd COURSE_URL --sub-only
+    python udemy-dl.py COURSE_URL -c NUMBER --info
 
-***Listing course's video informtion***
+***List down specific lecture from a chapter***
 
-	python udemy-dl.py -u user@domain.com -p p4ssw0rd COURSE_URL -l
-the above command will list down the size of video and attached files and available resolutions for a video in a course.
+    python udemy-dl.py COURSE_URL -c NUMBER -l NUMBER --info
 
-### Advanced Usage
+
+## **Advanced Usage**
 
 <pre><code>
 Author: Nasir khan (<a href="http://r0oth3x49.herokuapp.com/">r0ot h3x49</a>)
 
-Usage: udemy-dl.py [-h] [-u "username"] [-p "password"] COURSE_URL
-                   [-s] [-l] [-r "resolution"] [-o "/path/to/directory/"]
-                   [-d] [-c/--configs] [--sub-only] [--skip-sub]
+Usage: udemy-dl.py [-h] [-v] [-u] [-p] [-o] [-q] [-c] [-l] [--chapter-start]
+                   [--chapter-end] [--lecture-start] [--lecture-end] [--save]
+                   [--info] [--cache] [--sub-only] [--skip-sub]
+                   course
 
 A cross-platform python based utility to download courses from udemy for
 personal offline use.
 
-Options:
-  General:
-    -h, --help         Shows the help.
-    -v, --version      Shows the version.
+positional arguments:
+  course            Udemy course.
 
-  Advance:
-    -u, --username     Username in udemy.
-    -p, --password     Password of your account.
-    -c, --configs      Cache your credentials to use it later.
-    -s, --save-links   Do not download but save links to a file.
-    -l, --list-infos   List all lectures with available resolution.
-    -r, --resolution   Download video resolution, default resolution is 720p.
-    -d, --get-default  Download default resolution if requested not there.
-    -o, --output       Output directory where the videos will be saved,
-                       default is current directory.
-  
-  Others:
-    --sub-only         Download captions/subtitle only.
-    --skip-sub         Download course but skip captions/subtitle.
+General:
+  -h, --help        Shows the help.
+  -v, --version     Shows the version.
 
-  Example:
-	python udemy-dl.py  COURSE_URL
+Authentication:
+  -u , --username   Username in udemy.
+  -p , --password   Password of your account.
+
+Advance:
+  -o , --output     Download to specific directory.
+  -q , --quality    Download specific video quality.
+  -c , --chapter    Download specific chapter from course.
+  -l , --lecture    Download specific lecture from chapter(s).
+  --chapter-start   Download from specific position within course.
+  --chapter-end     Download till specific position within course.
+  --lecture-start   Download from specific position within chapter(s).
+  --lecture-end     Download till specific position within chapter(s).
+
+Others:
+  --save            Do not download but save links to a file.
+  --info            List all lectures with available resolution.
+  --cache           Cache your credentials to use it later.
+  --sub-only        Download captions/subtitle only.
+  --skip-sub        Download course but skip captions/subtitle.
+
+Example:
+  python udemy-dl.py  COURSE_URL
+  python udemy-dl.py -u user@domain.com -p p4ssw0rd COURSE_URL
 </code></pre>
-
-
-### Note 
-<pre><code>Do not change the position of any argument as given under the Usage, this may cause an error or failur in downloading of course.</code></pre>
